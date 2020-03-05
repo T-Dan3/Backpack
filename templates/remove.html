@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="/static/CSS/style.css">
+
+    <body>
+        {%- for category, message in get_flashed_messages(with_categories = true) %}
+        <div class = "alert alert-danger alert-dismissible">
+            <strong>Error! </strong>{{ message }}
+        </div>
+         {%- endfor %}
+        <form action = "{{request.path}}" method = "post">
+            <label for = "name" >Name</label><br>
+            <input type = "text" name="name" placeholder="Name" /><br>
+            <label for = "quantity">Quantity</label><br>
+            <input type = "number" name="quantity" placeholder="Quantity" /><br>
+            <input type = "submit" value="Submit" />
+        </form>
+    </body>
+</html>

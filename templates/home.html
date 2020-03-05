@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        {% if not current_user.is_authenticated %}
+            <h3>Items<a class="login" href="{{url_for('login')}}">Login</a></h3>
+        {% endif %}
+
+        {% if current_user.is_authenticated %}
+            <h3>Items(<a href="{{url_for('new')}}">Add Item</a>)(<a href="{{url_for('remove')}}">Remove Item</a>) <a class="login" href="{{url_for('logout')}}">Logout</a></h3>
+        {% endif %}
+        
+        {%- for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible">
+            <strong>Success! </strong>{{ message }}
+        </div>
+        {%- endfor %}
+        
+        <link rel="stylesheet" href="/static/CSS/style.css">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{item.name}}</td>
+                    <td>{{item.quantity}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+
+    </body>
+</html>
